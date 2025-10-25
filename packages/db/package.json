@@ -11,16 +11,15 @@
   "license": "ISC",
   "dependencies": {
     "drizzle-orm": "^0.44.7",
-    "node": "^22.21.0",
     "pg": "^8.16.3"
   },
   "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
     "@types/dotenv": "^8.2.3",
     "@types/node": "^24.9.1",
     "@types/pg": "^8.15.5",
     "dotenv": "^17.2.3",
-    "drizzle-kit": "^0.31.5",
-    "@repo/typescript-config": "workspace:*"
+    "drizzle-kit": "^0.31.5"
   },
   "exports": {
     ".": "./src/index.ts",
