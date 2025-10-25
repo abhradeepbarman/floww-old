@@ -1,0 +1,29 @@
+{
+  "name": "@repo/db",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "db:generate": "drizzle-kit generate --config ./src/drizzle.config.ts",
+    "db:migrate": "drizzle-kit migrate --config ./src/drizzle.config.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "drizzle-orm": "^0.44.7",
+    "node": "^22.21.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.3",
+    "@types/node": "^24.9.1",
+    "@types/pg": "^8.15.5",
+    "dotenv": "^17.2.3",
+    "drizzle-kit": "^0.31.5",
+    "@repo/typescript-config": "workspace:*"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts"
+  }
+}
