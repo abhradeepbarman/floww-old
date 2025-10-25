@@ -1,0 +1,10 @@
+# Ignore build artifacts
+build/
+dist/
+.next/
+
+# Ignore logs
+*.log
+
+# Ignore specific files
+README.md
