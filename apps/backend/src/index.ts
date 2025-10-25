@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import errorHandler from './middlewares/error-handler';
 import authRoutes from './routes/auth.routes';
+import workflowRoutes from './routes/workflow.routes';
 
 const app: Application = express();
 
@@ -34,6 +35,7 @@ app.get('/healthcheck', (req: Request, res: Response) => {
 
 /* -------------------Routes----------------------- */
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/workflow', workflowRoutes);
 
 /* ----------------404 not found---------------- */
 app.use((req: Request, res: Response) => {
