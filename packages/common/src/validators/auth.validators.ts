@@ -3,13 +3,14 @@ import { z } from 'zod';
 export const authValidators = {
   loginSchema: z.object({
     email: z
-      .string({
+      .string()
+      .min(1, {
         message: 'Email is required',
       })
       .refine(email => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email), {
         message: 'Invalid email',
       }),
-    password: z.string({
+    password: z.string().min(1, {
       message: 'Password is required',
     }),
   }),
@@ -17,7 +18,8 @@ export const authValidators = {
   registerSchema: z
     .object({
       name: z
-        .string({
+        .string()
+        .min(1, {
           message: 'Name is required',
         })
         .max(255, {
@@ -32,7 +34,8 @@ export const authValidators = {
           message: 'Invalid email',
         }),
       password: z
-        .string({
+        .string()
+        .min(1, {
           message: 'Password is required',
         })
         .min(8, {
@@ -45,7 +48,7 @@ export const authValidators = {
           message:
             'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
         }),
-      confirmPassword: z.string({
+      confirmPassword: z.string().min(1, {
         message: 'Confirm Password is required',
       }),
     })
