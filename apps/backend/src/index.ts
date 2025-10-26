@@ -2,9 +2,11 @@ import express, { Application, NextFunction, Request, Response } from 'express';
 import config from './config';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import session from 'express-session';
 import errorHandler from './middlewares/error-handler';
 import authRoutes from './routes/auth.routes';
 import workflowRoutes from './routes/workflow.routes';
+import connectionRoutes from './routes/connection.routes';
 
 const app: Application = express();
 
@@ -16,6 +18,17 @@ app.use(
   cors({
     origin: [config.ORIGIN_FRONTEND],
     credentials: true,
+  }),
+);
+app.set('trust proxy', 1);
+app.use(
+  session({
+    secret: config.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: true,
+    },
   }),
 );
 
@@ -36,6 +49,7 @@ app.get('/healthcheck', (req: Request, res: Response) => {
 /* -------------------Routes----------------------- */
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/workflow', workflowRoutes);
+app.use('/api/v1/connection', connectionRoutes);
 
 /* ----------------404 not found---------------- */
 app.use((req: Request, res: Response) => {

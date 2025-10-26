@@ -13,16 +13,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@repo/common": "workspace:*",
+    "@repo/db": "workspace:*",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.7",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
     "jsonwebtoken": "^9.0.2",
-    "zod": "^4.1.12",
-    "@repo/db": "workspace:*",
-    "@repo/common": "workspace:*"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -31,6 +32,7 @@
     "@types/cors": "^2.8.19",
     "@types/dotenv": "^8.2.3",
     "@types/express": "^5.0.4",
+    "@types/express-session": "^1.18.2",
     "@types/jsonwebtoken": "^9.0.10",
     "prettier": "^3.6.2",
     "tsx": "^4.20.6"

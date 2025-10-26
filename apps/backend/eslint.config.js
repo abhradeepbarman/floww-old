@@ -23,8 +23,9 @@ export default [
       'no-var': 'error', // enforce let/const
       'prefer-const': 'warn',
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      'no-undef': 'error',
+      'no-undef': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-undef': 'off',
     },
     ignores: ['node_modules/**', 'dist/**', 'build/**', '.turbo/**', 'coverage/**'],
   },
