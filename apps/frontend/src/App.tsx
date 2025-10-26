@@ -5,6 +5,7 @@ import Loader from './components/common/loader';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import AuthLayout from './layout/auth-layout';
+import ProtectedLayout from './layout/protected-layout';
 
 const Home = lazy(() => import('./pages/home'));
 const Main = lazy(() => import('./pages/dashboard/main'));
@@ -17,10 +18,12 @@ const App = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="dashboard" element={<DashboardLayout />}>
-          <Route index element={<Main />} />
-          <Route path="workflows" element={<Workflows />} />
-          <Route path="connections" element={<Connections />} />
+        <Route path="/" element={<ProtectedLayout />}>
+          <Route path="dashboard" element={<DashboardLayout />}>
+            <Route index element={<Main />} />
+            <Route path="workflows" element={<Workflows />} />
+            <Route path="connections" element={<Connections />} />
+          </Route>
         </Route>
         <Route path="/" element={<AuthLayout />}>
           <Route path="login" element={<Login />} />

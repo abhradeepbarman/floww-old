@@ -3,13 +3,32 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Field, FieldDescription, FieldGroup } from '@/components/ui/field';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import axiosInstance from '@/lib/axios';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { authValidators } from '@repo/common/validators';
+import { useMutation } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
+import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { mutate, isPending } = useMutation({
+    mutationFn: (values: z.infer<typeof authValidators.loginSchema>) => {
+      return axiosInstance.post('/auth/login', values);
+    },
+    onSuccess: res => {
+      localStorage.setItem('user', JSON.stringify(res.data.data));
+      navigate('/dashboard');
+    },
+    onError: (err: AxiosError<{ message: string }>) => {
+      toast.error(err.response?.data?.message);
+    },
+  });
+
   const form = useForm<z.infer<typeof authValidators.loginSchema>>({
     resolver: zodResolver(authValidators.loginSchema),
     defaultValues: {
@@ -18,8 +37,8 @@ const Login = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof authValidators.loginSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof authValidators.loginSchema>) => {
+    await mutate(values);
   };
 
   return (
@@ -62,7 +81,9 @@ const Login = () => {
                       )}
                     />
                     <Field>
-                      <Button type="submit">Login</Button>
+                      <Button type="submit">
+                        {isPending ? <Loader2 className="animate-spin w-5 h-5" /> : 'Login'}
+                      </Button>
                       <Button variant="outline" type="button">
                         Login with Google
                       </Button>
