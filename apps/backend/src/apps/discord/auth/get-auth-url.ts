@@ -5,7 +5,7 @@ export const getAuthUrl = (req: Request, res: Response) => {
   const state = req.session.id;
   const clientId = config.DISCORD_CLIENT_ID;
   const scopes = ['identify', 'guilds'];
-  const redirectUri = `${config.ORIGIN_BACKEND}/api/v1/connection/discord/callback`;
+  const redirectUri = config.DISCORD_REDIRECT_URI;
   const prompt = 'consent';
   const integrationType = 0;
 

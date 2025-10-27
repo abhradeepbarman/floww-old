@@ -11,23 +11,25 @@ import connectionRoutes from './routes/connection.routes';
 const app: Application = express();
 
 /* -------------------Middlewares------------------- */
+app.set('trust proxy', 1);
 app.use(express.json({ limit: '16kb' }));
 app.use(express.urlencoded({ extended: true, limit: '16kb' }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: [config.ORIGIN_FRONTEND],
+    origin: [config.ORIGIN_FRONTEND, 'https://discord.com'],
     credentials: true,
   }),
 );
-app.set('trust proxy', 1);
 app.use(
   session({
     secret: config.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: true,
+      secure: config.NODE_ENV === 'production',
+      sameSite: config.NODE_ENV === 'production' ? 'none' : 'lax',
+      httpOnly: true,
     },
   }),
 );

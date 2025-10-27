@@ -24,15 +24,15 @@ export const setCookies = (res: Response, accessToken: string, refreshToken: str
   res.cookie('access_token', accessToken, {
     httpOnly: true,
     maxAge: 60 * 60 * 1000,
-    secure: true,
+    secure: config.NODE_ENV === 'production',
+    sameSite: config.NODE_ENV === 'production' ? 'none' : 'lax',
   });
   res.cookie('refresh_token', refreshToken, {
     httpOnly: true,
     maxAge: 7 * 24 * 60 * 60 * 1000,
-    secure: true,
+    secure: config.NODE_ENV === 'production',
+    sameSite: config.NODE_ENV === 'production' ? 'none' : 'lax',
   });
-
-  return res;
 };
 
 const authController = {
@@ -171,7 +171,7 @@ const authController = {
 
     await db.update(users).set({ refreshToken: refreshToken }).where(eq(users.id, userDetails.id));
 
-    res = setCookies(res, accessToken, refreshToken);
+    setCookies(res, accessToken, refreshToken);
     return res.status(200).send(
       ResponseHandler(200, 'Refresh token generated', {
         id: userDetails.id,

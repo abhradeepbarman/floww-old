@@ -9,10 +9,9 @@ const ProtectedLayout = () => {
   }
 
   return (
-    <div>
-      <div>ProtectedLayout</div>
+    <>
       <Outlet />
-    </div>
+    </>
   );
 };
 

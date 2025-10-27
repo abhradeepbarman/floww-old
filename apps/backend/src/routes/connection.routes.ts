@@ -4,6 +4,8 @@ import connectionController from '../controllers/connection.controller';
 
 const router: Router = Router();
 
-router.post('/:app', auth, connectionController.addConnection);
+router.get('/', auth, connectionController.getAllConnections);
+router.get('/:app', auth, connectionController.addConnection);
+router.post('/:app/token', auth, connectionController.getConnectionToken);
 
 export default router;

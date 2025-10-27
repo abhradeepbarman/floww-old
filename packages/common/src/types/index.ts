@@ -1,0 +1,5 @@
+export enum AppStatus {
+  CONNECTED = 'CONNECTED',
+  DISCONNECTED = 'DISCONNECTED',
+  EXPIRED = 'EXPIRED',
+}
