@@ -147,7 +147,7 @@ const authController = {
   }),
 
   refresh: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.cookies.refreshToken;
+    const token = req.cookies['refresh_token'];
 
     if (!token) {
       return next(CustomErrorHandler.unAuthorized());
