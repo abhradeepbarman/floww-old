@@ -1,8 +1,7 @@
-import { Request, Response } from 'express';
 import config from '../../../config';
 
-export const getAuthUrl = (req: Request, res: Response) => {
-  const state = req.session.id;
+export const getAuthUrl = (sessionId: string) => {
+  const state = sessionId;
   const clientId = config.DISCORD_CLIENT_ID;
   const scopes = ['identify', 'guilds'];
   const redirectUri = config.DISCORD_REDIRECT_URI;
@@ -18,5 +17,5 @@ export const getAuthUrl = (req: Request, res: Response) => {
   authUrl.searchParams.set('prompt', prompt);
   authUrl.searchParams.set('integration_type', integrationType.toString());
 
-  return res.redirect(authUrl.toString());
+  return authUrl.toString();
 };

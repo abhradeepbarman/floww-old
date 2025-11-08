@@ -6,6 +6,7 @@ import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import AuthLayout from './layout/auth-layout';
 import ProtectedLayout from './layout/protected-layout';
+import AuthCallback from './components/common/auth-callback';
 
 const Home = lazy(() => import('./pages/home'));
 const Main = lazy(() => import('./pages/dashboard/main'));
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
+        <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

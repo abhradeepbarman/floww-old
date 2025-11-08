@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true, limit: '16kb' }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: [config.ORIGIN_FRONTEND, 'https://discord.com'],
+    origin: [config.ORIGIN_FRONTEND],
     credentials: true,
   }),
 );

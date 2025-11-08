@@ -1,6 +1,7 @@
+import { IApp } from '..';
 import auth from './auth';
 
-const discord = {
+const discord: IApp = {
   name: 'Discord',
   key: 'DISCORD',
   icon: '/discord.png',

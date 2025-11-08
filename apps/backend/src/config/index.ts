@@ -11,6 +11,9 @@ const _config = {
   DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID || '',
   DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET || '',
   DISCORD_REDIRECT_URI: process.env.DISCORD_REDIRECT_URI || '',
+  SLACK_CLIENT_ID: process.env.SLACK_CLIENT_ID || '',
+  SLACK_CLIENT_SECRET: process.env.SLACK_CLIENT_SECRET || '',
+  SLACK_REDIRECT_URI: process.env.SLACK_REDIRECT_URI || '',
 };
 
 const config = Object.freeze(_config);

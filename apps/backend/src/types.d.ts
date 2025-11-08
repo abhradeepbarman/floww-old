@@ -8,7 +8,4 @@ declare namespace Express {
   export interface Request {
     user: JWTPayload;
   }
-  export interface Response {
-    user: JWTPayload;
-  }
 }

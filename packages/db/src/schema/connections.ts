@@ -9,8 +9,8 @@ const connections = pgTable('connections', {
     .references(() => users.id),
   app: varchar('app').notNull(),
   accessToken: varchar('access_token').notNull(),
-  refreshToken: varchar('refresh_token').notNull(),
-  expiresAt: timestamp('expires_at').notNull(),
+  refreshToken: varchar('refresh_token'),
+  expiresAt: timestamp('expires_at'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });

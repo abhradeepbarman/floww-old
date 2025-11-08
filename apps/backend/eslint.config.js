@@ -19,13 +19,14 @@ export default [
       reportUnusedDisableDirectives: true,
     },
     rules: {
-      'no-console': 'off', // allow console logs in backend
-      'no-var': 'error', // enforce let/const
+      'no-console': 'off',
+      'no-var': 'error',
       'prefer-const': 'warn',
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'no-undef': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-undef': 'off',
+      '@typescript-eslint/no-unsafe-function-type': 'off',
     },
     ignores: ['node_modules/**', 'dist/**', 'build/**', '.turbo/**', 'coverage/**'],
   },
